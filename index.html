@@ -1,23 +1,838 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+    <style>
+        body { 
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            line-height: 1.8; 
+            background-color: #f4f6f5; 
+            color: #2b2d2f; 
+        }
+        .container { 
+            width: 100%; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 40px 20px; 
+            box-sizing: border-box; 
+        }
+
+        header { 
+            background: linear-gradient(135deg, #2d5a5e, #4a777a); 
+            color: white; 
+            padding: 60px 20px; 
+            border-bottom: 5px solid #e29578; 
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(45, 90, 94, 0.1);
+        }
+        header h1 { 
+            margin: 0; 
+            font-size: 2.3em; 
+            font-weight: 800; 
+            letter-spacing: -0.03em;
+        }
+        header p {
+            margin: 15px 0 0 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        nav { 
+            background-color: white; 
+            padding: 15px; 
+            margin: 25px 0; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02); 
+        }
+        .main-menu { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+            display: flex; 
+            justify-content: space-around; 
+            flex-wrap: wrap;
+        }
+        .main-menu li { 
+            margin: 5px; 
+        }
+        .main-menu li a { 
+            display: block; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            color: #2d5a5e; 
+            font-weight: 700; 
+            font-size: 1rem; 
+            transition: all 0.3s ease; 
+        }
+        .main-menu li a:hover { 
+            background-color: #eaf2eb; 
+            color: #2d5a5e; 
+            border-radius: 8px; 
+        }
+
+        .content-wrap { 
+            display: flex; 
+            gap: 30px; 
+        }
+        .sidebar { 
+            flex: 0 0 360px; 
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-self: flex-start; 
+        }
+        .main-content { 
+            flex: 1; 
+            padding: 40px; 
+            background-color: white; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02); 
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.02);
+            border: 1px solid #e1e7e4;
+        }
+        .card h3 { 
+            color: #2d5a5e; 
+            font-size: 1.25rem; 
+            margin-top: 0; 
+            border-bottom: 2px solid #eaf2eb; 
+            padding-bottom: 12px; 
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #2d5a5e;
+            font-size: 0.95rem;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cce0d8;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+            color: #2b2d2f;
+            transition: border-color 0.3s;
+        }
+        .form-control:focus {
+            border-color: #2d5a5e;
+            outline: none;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .checkbox-group input {
+            width: 18px;
+            height: 18px;
+            accent-color: #2d5a5e;
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background-color: #e29578;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #d18466;
+        }
+
+        .main-content h2 { 
+            color: #2d5a5e; 
+            font-size: 1.85rem; 
+            border-bottom: 2px solid #eaf2eb; 
+            padding-bottom: 15px; 
+            margin-top: 40px; 
+            font-weight: 800;
+        }
+        .main-content h3 { 
+            color: #2d5a5e; 
+            font-size: 1.45rem; 
+            margin-top: 35px; 
+            border-left: 5px solid #e29578; 
+            padding-left: 15px; 
+            font-weight: 700;
+        }
+        .main-content h4 { 
+            font-size: 1.15rem; 
+            color: #2b2d2f; 
+            margin-top: 25px; 
+            font-weight: 700;
+        }
+        .main-content p { 
+            color: #4a4d50; 
+            margin-bottom: 1.6em; 
+            text-align: justify; 
+            font-size: 1.05rem;
+        }
+
+        .highlight-box { 
+            background-color: #fdf5f2; 
+            border-left: 5px solid #e29578; 
+            padding: 25px; 
+            border-radius: 12px; 
+            margin: 30px 0; 
+        }
+        .highlight-box p { 
+            margin: 0; 
+            color: #5c3e35; 
+            font-weight: 500; 
+            line-height: 1.7;
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 25px 0; 
+            font-size: 0.95rem; 
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+        }
+        table th, table td { 
+            border: 1px solid #e1e7e4; 
+            padding: 14px 16px; 
+            text-align: left; 
+        }
+        table th { 
+            background-color: #eaf2eb; 
+            color: #2d5a5e; 
+            font-weight: 700; 
+        }
+        table tr:nth-child(even) { 
+            background-color: #fbfdfc; 
+        }
+
+        .chart-container {
+            background-color: white;
+            border: 1px solid #e1e7e4;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .chart-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .chart-row:last-child {
+            margin-bottom: 0;
+        }
+        .chart-label {
+            width: 140px;
+            font-weight: 700;
+            color: #2b2d2f;
+            font-size: 0.9rem;
+        }
+        .chart-bar-wrap {
+            flex: 1;
+            background-color: #f0f2f1;
+            border-radius: 6px;
+            height: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        .chart-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2d5a5e, #4a777a);
+            border-radius: 6px;
+            transition: width 0.5s ease-in-out;
+        }
+        .chart-value {
+            width: 90px;
+            text-align: right;
+            font-weight: 700;
+            color: #2d5a5e;
+            font-size: 0.9rem;
+        }
+
+        .interactive-results {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f4fcf6;
+            border-radius: 8px;
+            border: 1px solid #d2edd7;
+        }
+
+        .external-links ul { 
+            list-style: none; 
+            padding: 0; 
+            margin-top: 20px; 
+        }
+        .external-links li {
+            margin-bottom: 10px;
+        }
+        .external-links li a { 
+            display: block; 
+            padding: 14px 20px; 
+            background-color: #f7f9f8; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            color: #2b2d2f; 
+            font-weight: 500;
+            border: 1px solid #e1e7e4;
+            transition: all 0.3s; 
+        }
+        .external-links li a:hover { 
+            background-color: #eaf2eb; 
+            color: #2d5a5e; 
+            border-color: #cce0d8;
+        }
+
+        @media (max-width: 960px) {
+            .content-wrap { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { padding: 25px; }
+            .main-menu { flex-direction: column; align-items: stretch; }
+            .main-menu li a { text-align: center; border-bottom: 1px solid #e1e7e4; }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "자동차보험 연령별 구간 기준 및 특약 금액 차이 비교 분석 가이드",
+      "headline": "2026년 자동차보험 연령별 구간 기준 및 특약 금액 차이 비교 분석",
+      "description": "자동차보험 연령별 구간 기준에 따른 평균 금액 분석과 특약 종류별 요금 차이를 상세히 다룹니다. 신규 가입자 최저가 비교 추천 및 온라인 다이렉트 할인 방법 총정리.",
+      "url": "https://finance.reliabledone.com/car-insurance-age-guide",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "자동차보험 연령별 구간"
+        },
+        {
+          "@type": "Thing",
+          "name": "자동차보험 특약 할인"
+        }
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "자동차보험 트렌드 연구소"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "자동차보험 트렌드 연구소",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://finance.reliabledone.com/logo.png"
+        }
+      },
+      "datePublished": "2026-01-10",
+      "dateModified": "2026-07-24"
+    }
+    </script>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>자동차보험 연령별 구간 기준 및 특약 금액 차이 완벽 분석</h1>
+            <p>2026년 최신 손해율 반영 및 다이렉트 할인 전략을 통한 현명한 요금 설계 방안</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul class="main-menu">
+                <li><a href="#section_age">연령별 구간 기준</a></li>
+                <li><a href="#section_rider">특약 금액 차이</a></li>
+                <li><a href="#section_direct">다이렉트 비교법</a></li>
+                <li><a href="#section_trend">2026년 제도 변화</a></li>
+                <li><a href="#section_faq">자주 묻는 질문</a></li>
+            </ul>
+        </nav>
+
+        <div class="content-wrap">
+            <div class="sidebar">
+                
+                <div class="card">
+                    <h3>연령별 예상 요금 계산기</h3>
+                    <p style="font-size: 0.85rem; color: #5c6166; margin-top: 0;">나이와 경력 조건을 입력하여 대략적인 기본 보험료 지수를 확인해보세요.</p>
+                    
+                    <div class="form-group">
+                        <label for="calcAge">연령대 구간 선택</label>
+                        <select id="calcAge" class="form-control">
+                            <option value="u21">만 21세 미만</option>
+                            <option value="o21">만 21세 이상</option>
+                            <option value="o24">만 24세 이상</option>
+                            <option value="o26">만 26세 이상</option>
+                            <option value="o30" selected>만 30세 이상</option>
+                            <option value="o35">만 35세 이상</option>
+                            <option value="o43">만 43세 이상</option>
+                            <option value="o48">만 48세 이상</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calcExp">운전 경력 요건</label>
+                        <select id="calcExp" class="form-control">
+                            <option value="new">신규 가입 (최초)</option>
+                            <option value="yr1">1년 이상 3년 미만</option>
+                            <option value="yr3">3년 이상 5년 미만</option>
+                            <option value="yr5" selected>5년 이상 베테랑</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calcCar">차종 및 브랜드 분류</label>
+                        <select id="calcCar" class="form-control">
+                            <option value="compact">경차 (모닝, 레이 등)</option>
+                            <option value="sedan" selected>준중형/중형 세단</option>
+                            <option value="suv">준중형/중형 SUV</option>
+                            <option value="luxury">고급/수입 스포츠 세단</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="btn-primary" onclick="estimatePremium();">예상 보험료 지수 계산</button>
+
+                    <div id="estResult" class="interactive-results" style="display: none; margin-top: 15px;">
+                        <p id="estText" style="font-size: 0.9rem; margin: 0; color: #2d5a5e;"></p>
+                        <p id="estRisk" style="font-size: 0.85rem; margin: 5px 0 0 0; color: #4a4d50;"></p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>특약 적용 금액 절감 시뮬레이터</h3>
+                    <p style="font-size: 0.85rem; color: #5c6166; margin-top: 0;">원하는 특약을 중복 체크하여 절감액을 예상해보세요.</p>
+                    
+                    <div class="form-group">
+                        <label for="basePremium">기본 산정 요금 (원)</label>
+                        <input type="number" id="basePremium" class="form-control" value="1200000" step="50000">
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="rideMileage" checked>
+                        <label for="rideMileage" style="font-size: 0.9rem; font-weight: 500; color: #2b2d2f;">주행거리 마일리지 할인</label>
+                    </div>
+                    <div class="form-group" style="padding-left: 25px; margin-bottom: 10px;">
+                        <select id="mileageSelect" class="form-control" style="padding: 6px; font-size: 0.85rem;">
+                            <option value="k3">연간 3,000km 이하 (약 35퍼센트 할인)</option>
+                            <option value="k5">연간 5,000km 이하 (약 25퍼센트 할인)</option>
+                            <option value="k10">연간 10,000km 이하 (약 15퍼센트 할인)</option>
+                            <option value="k15">연간 15,000km 이하 (약 5퍼센트 할인)</option>
+                        </select>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="rideUbi">
+                        <label for="rideUbi" style="font-size: 0.9rem; font-weight: 500; color: #2b2d2f;">UBI 안전운전 (T맵, 카카오)</label>
+                    </div>
+                    <div class="form-group" style="padding-left: 25px; margin-bottom: 10px;">
+                        <select id="ubiSelect" class="form-control" style="padding: 6px; font-size: 0.85rem;">
+                            <option value="s80">안전운전 점수 80점 이상 (약 12퍼센트 할인)</option>
+                            <option value="s70">안전운전 점수 70점 이상 (약 8퍼센트 할인)</option>
+                            <option value="s60">안전운전 점수 60점 이상 (약 4퍼센트 할인)</option>
+                        </select>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="rideAdas" checked>
+                        <label for="rideAdas" style="font-size: 0.9rem; font-weight: 500; color: #2b2d2f;">ADAS 첨단안전장치 (6퍼센트)</label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="rideChild">
+                        <label for="rideChild" style="font-size: 0.9rem; font-weight: 500; color: #2b2d2f;">자녀 할인 특약 (8퍼센트)</label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="rideEdelivery">
+                        <label for="rideEdelivery" checked>
+                        <span style="font-size: 0.9rem; font-weight: 500; color: #2b2d2f;">모바일 이메일 고지 (2퍼센트)</span></label>
+                    </div>
+
+                    <button type="button" class="btn-primary" onclick="calculateDiscounts();">총 할인 적용 금액 확인</button>
+
+                    <div id="discResult" class="interactive-results" style="display: none; margin-top: 15px;">
+                        <p id="discSavings" style="font-size: 0.9rem; margin: 0; color: #2d5a5e;"></p>
+                        <p id="discFinal" style="font-size: 0.95rem; margin: 5px 0 0 0; color: #e29578; font-weight: 700;"></p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>1대1 최적화 맞춤 설계 신청</h3>
+                    <p style="font-size: 0.85rem; color: #5c6166; margin-top: 0;">전문 요금 분석 파트너를 통한 비대면 컨설팅으로 가장 합리적인 가입 요금제를 확인하세요.</p>
+                    
+                    <form id="consultForm" onsubmit="submitConsultation(event);">
+                        <div class="form-group">
+                            <label for="consName">성함</label>
+                            <input type="text" id="consName" class="form-control" placeholder="실명을 입력해 주세요" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="consPhone">연락처</label>
+                            <input type="tel" id="consPhone" class="form-control" placeholder="010-0000-0000" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="consAge">해당 연령대</label>
+                            <select id="consAge" class="form-control">
+                                <option value="20s">20대 초중반 신규 운전자</option>
+                                <option value="30s">30대 패밀리카 운전자</option>
+                                <option value="40s">40대 무사고 베테랑</option>
+                                <option value="50s">50대 이상 안정 운전자</option>
+                            </select>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="consAgree" required>
+                            <label for="consAgree" style="font-size: 0.8rem; font-weight: 500; color: #4a4d50;">개인정보 처리 방침에 동의합니다.</label>
+                        </div>
+                        <button type="submit" class="btn-primary">비대면 컨설팅 무료 신청</button>
+                    </form>
+
+                    <div id="consultResult" class="interactive-results" style="display: none;">
+                        <p style="font-size: 0.9rem; margin: 0; color: #2d5a5e; font-weight: bold;">신청이 성공적으로 접수되었습니다.</p>
+                        <p style="font-size: 0.85rem; margin: 5px 0 0 0; color: #4a4d50;">담당 전문 컨설턴트가 입력해주신 연락처로 곧 안내해 드릴 예정입니다.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="main-content">
+                
+                <h2 id="section_intro">1. 자동차보험 요금 책정의 원리와 연령별 구간의 중요성</h2>
+                <p>
+                    대한민국에서 차량을 운행하는 모든 운전자라면 매년 의무적으로 가입해야 하는 자동차보험의 구조는 단순하지 않습니다. 특히 가입자들이 매년 마주하게 되는 요금 및 가격의 편차는 나이와 경력, 그리고 사고 위험률이라는 변수에 의해 복합적으로 산정됩니다. 동일한 차종을 소유하고 있더라도 가입자의 연령대 구간 기준에 따라 최종 지불하는 금액이 수십만 원에서 많게는 백만 원 이상 벌어지기도 합니다. 
+                </p>
+                <p>
+                    이러한 현상이 발생하는 근본적인 원인은 보험수리학적 사고 통계 데이터 때문입니다. 손해보험 업체는 수년간 누적된 운전자 연령별 사고 발생 빈도 및 대인, 대물 사고의 처리 비용을 정밀하게 가공하여 손해율을 관리합니다. 이로 인해 위험률이 높게 측정되는 20대 초반 신규 운전자는 상대적으로 매우 높은 가격을 감당하게 되며, 무사고 이력이 누적되어 가장 안전한 나이대에 들어서는 30대 후반부터 50대 중반까지는 요금제 수준이 크게 낮아지는 장단점을 보여줍니다.
+                </p>
+                <p>
+                    최근 2026년도 손해율 및 물가 동향을 살펴보면, 자동차 부품 원가 상승과 정비 요금의 조정으로 인해 자차보험료 부담이 증가하는 양상을 보이고 있습니다. 이에 대응하여 본인 연령에 가장 최적화된 다이렉트 가입 저렴한곳 및 할인 특약 종류를 파악하는 것은 단순한 선택이 아닌 고정비 지출을 줄이는 핵심적인 전략입니다.
+                </p>
+
+                <div class="highlight-box">
+                    <p>핵심 한 줄 요약: 자동차보험 요금의 가장 큰 편차 요인은 바로 연령별 구간 요율입니다. 나이대에 알맞은 맞춤형 특약 설계와 다이렉트 견적 비교를 결합하면 최대 40퍼센트 이상의 지출 비용을 효율적으로 아낄 수 있습니다.</p>
+                </div>
+
+                <h2 id="section_age">2. 자동차보험 연령별 구간 기준 분석과 연간 예상 평균 금액</h2>
+                <p>
+                    국내 자동차보험 시장은 연령 기준을 매우 세분화하여 설계하고 있습니다. 주요 연령 구간은 만 21세 미만, 만 21세 이상, 만 24세 이상, 만 26세 이상, 만 30세 이상, 만 35세 이상, 만 43세 이상, 만 48세 이상 등으로 나누어집니다. 이 구간을 기점으로 기본 보험료율의 할증 지수가 큰 폭으로 꺾이게 되므로, 가입일 기준으로 본인이 속한 만 나이를 계산하는 것이 무척 중요합니다.
+                </p>
+
+                <h3>만 21세 미만 및 만 21세 이상 구간</h3>
+                <p>
+                    만 21세 미만 구간은 통계상 전 연령대 중에서 가장 손해율이 높은 구간으로 꼽힙니다. 운전 면허를 갓 취득한 대학생이나 사회 초년생들이 주로 분포되어 있어 도로 상황에 대한 판단력이 미숙하고 단독 사고 확률이 지극히 높기 때문입니다. 이로 인해 만 21세 미만 신규 가입자의 예상 평균 금액은 200만 원 중반에서 많게는 400만 원을 초과하기도 합니다. 
+                </p>
+                <p>
+                    만 21세 이상 구간으로 전환될 경우 요금은 기존 대비 대략 20퍼센트에서 30퍼센트 가량 인하되지만, 여전히 다른 연령대 구간에 비해 높은 부담을 유지하게 됩니다. 이 시기에는 부모님 명의의 가입 조건에 1인 지정 운전자로 이름을 올리거나, 군 운전병 경력 등의 경력 인정을 등록하여 요율을 낮추는 방법을 적극 권장합니다.
+                </p>
+
+                <h3>만 24세 이상 및 만 26세 이상 구간</h3>
+                <p>
+                    만 24세에 이르면 도로 주행 능력이 일정 수준 이상 성숙해지고 사고 빈도가 유의미하게 하락합니다. 이에 따라 연간 예상 금액 역시 150만 원 내외로 안정화되는 흐름을 보입니다. 이어 만 26세 구간에 도달하면 대부분의 손해보험 브랜드가 책정하는 위험 할증 요율이 평평해지기 시작하며, 많은 운전자들이 요금이 체감될 만큼 저렴해지는 첫 번째 성지로 여깁니다. 만 26세 이상의 운전 경력 3년 소유자 평균 요금은 약 90만 원에서 130만 원 선에서 형성되는 편입니다.
+                </p>
+
+                <h3>만 30세 이상에서 만 48세 이상 황금 구간</h3>
+                <p>
+                    만 30세 이상부터는 직장 및 가족 형성이 본격적으로 활성화되는 생애 주기적 특성이 반영됩니다. 운전 태도 자체가 한층 차분하고 안전 지향적으로 변화하여 보험사에서도 제일 안심하는 우수 고객군으로 분류합니다. 만 30세 이상, 만 35세 이상, 만 43세 및 만 48세 이상 구간에 접어들면 주말 나들이용 세컨드카 소유주나 단거리 출퇴근자가 늘어나 연간 예상 평균 가격이 50만 원에서 80만 원 수준까지 낮아집니다. 이 구간의 가입자들은 할인 방법의 적용 폭이 매우 넓기 때문에 정교하게 설계할수록 한 달 치 유류비에 육박하는 비용 절감 효과를 맛볼 수 있습니다.
+                </p>
+
+                <div class="chart-container">
+                    <h4 style="margin-top: 0; margin-bottom: 20px; color: #2d5a5e;">연령대 구간별 평균 보험료율 지수 비교 (만 35세 미사고 가입자 = 100 기준)</h4>
+                    
+                    <div class="chart-row">
+                        <div class="chart-label">만 21세 미만 (신규)</div>
+                        <div class="chart-bar-wrap">
+                            <div class="chart-bar-fill" style="width: 100%;"></div>
+                        </div>
+                        <div class="chart-value">지수 320</div>
+                    </div>
+
+                    <div class="chart-row">
+                        <div class="chart-label">만 21세 이상</div>
+                        <div class="chart-bar-wrap">
+                            <div class="chart-bar-fill" style="style; width: 78%;"></div>
+                        </div>
+                        <div class="chart-value">지수 250</div>
+                    </div>
+
+                    <div class="chart-row">
+                        <div class="chart-label">만 24세 이상</div>
+                        <div class="chart-bar-wrap">
+                            <div class="chart-bar-fill" style="width: 59%;"></div>
+                        </div>
+                        <div class="chart-value">지수 190</div>
+                    </div>
+
+                    <div class="chart-row">
+                        <div class="chart-label">만 26세 이상</div>
+                        <div class="chart-bar-wrap">
+                            <div class="chart-bar-fill" style="width: 43%;"></div>
+                        </div>
+                        <div class="chart-value">지수 140</div>
+                    </div>
+
+                    <div class="chart-row">
+                        <div class="chart-label">만 30세 이상</div>
+                        <div class="chart-bar-wrap">
+                            <div class="chart-bar-fill" style="width: 34%;"></div>
+                        </div>
+                        <div class="chart-value">지수 110</div>
+                    </div>
+
+                    <div class="chart-row">
+                        <div class="chart-label">만 35세 ~ 48세</div>
+                        <div class="chart-bar-wrap">
+                            <div class="chart-bar-fill" style="width: 31%;"></div>
+                        </div>
+                        <div class="chart-value">지수 100</div>
+                    </div>
+                    
+                    <p style="font-size: 0.8rem; color: #5c6166; margin-top: 15px; margin-bottom: 0; text-align: center;">위 차트 지수는 동일 국산 준중형 차량 가입 기준의 시뮬레이션 지표이며 개인 이력에 따라 다소 편차가 있을 수 있습니다.</p>
+                </div>
+
+                <h2 id="section_rider">3. 특약 종류에 따른 요금 절감 혜택 및 실질적 금액 차이</h2>
+                <p>
+                    자동차보험 기본 견적을 산출한 뒤 최종 결제 금액을 결정짓는 결정적 변수가 바로 특약(Rider)입니다. 어떤 특약을 추가 혹은 조율하는가에 따라 청구 요금이 수십만 원 단위로 차이를 보이게 되므로, 가입자들은 본인의 실제 차량 탑승 주기와 운전 습관에 완벽히 매칭시켜 신청해야 합니다.
+                </p>
+
+                <h3>주행거리 연동 할인 특약 (마일리지 할인)</h3>
+                <p>
+                    가장 보편적이면서도 금액 깎아주는 강도가 제일 높은 강력한 특약입니다. 연간 주행거리가 짧을수록 손해율도 비례하여 떨어진다는 연구 결과에 착안해 개발되었습니다. 연간 주행거리가 3,000km 이내로 지극히 짧은 운전자는 보험 업체별로 많게는 35퍼센트에서 40퍼센트까지 이미 납부했던 보험료를 계좌로 환급받는 환상적인 혜택을 누릴 수 있습니다. 비록 연간 1만 5천km 수준을 기록하더라도 소폭의 비율(약 2~5퍼센트)의 절감을 받을 수 있으므로 일단 무조건 신청해 두는 편이 압도적으로 이득입니다.
+                </p>
+
+                <h3>UBI 안전운전 점수 연동 특약</h3>
+                <p>
+                    안전하고 조심스러운 운전 습관을 유지하는 고객을 위해 신설된 혁신적인 스마트 특약 시스템입니다. 널리 사용되는 네이버 지도나 T맵, 카카오내비, 현대/기아 순정 어플 등과 연계하여 누적 주행 거리 조건 내에서 기록한 주행 습관 점수(급가속, 급감속, 야간 운행 횟수 감안)가 기준선을 통과하면 추가 할인을 더해줍니다. 보험사에 따라 70점 내지 80점 이상의 안전 점수를 유지할 경우 전체 연간 보험 금액의 약 8퍼센트에서 13퍼센트 수준의 요금을 즉각 할인받을 수 있습니다.
+                </p>
+
+                <h3>가족 및 부부 한정 범위 지정 특약</h3>
+                <p>
+                    자동차보험 보상 범위를 가족 전체나 불특정 다수가 운행할 수 있도록 누구나로 넓히면 사고 발생 대상의 다변화로 기본 요금이 급격히 뛰어오르게 됩니다. 이 단점을 방어하려면 범위를 기명 1인 한정, 부부 한정, 혹은 부모 및 본인 2인 한정 등으로 가급적 좁히는 것이 효과적입니다. 범위를 본인 단독으로 좁힐 때와 누구나 한정으로 넓혀 둘 때의 차이점은 적게는 1.5배에서 많게는 2배를 웃도는 비용 편차를 낳게 됩니다.
+                </p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>인기 할인 특약 유형</th>
+                            <th>예상 평균 할인율 범위</th>
+                            <th>핵심 가입 요건 및 유의 사항</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>주행거리 마일리지 특약</td>
+                            <td>5퍼센트 ~ 최대 40퍼센트</td>
+                            <td>연 주행 만 5천km 미만 운행 시, 만기 환급 기준</td>
+                        </tr>
+                        <tr>
+                            <td>UBI 내비게이션 점수 특약</td>
+                            <td>4퍼센트 ~ 최대 13퍼센트</td>
+                            <td>최근 500km ~ 1,000km 주행 점수 기준 70점~80점 돌파 필수</td>
+                        </tr>
+                        <tr>
+                            <td>ADAS 첨단 안전장치 장착</td>
+                            <td>3퍼센트 ~ 최대 8퍼센트</td>
+                            <td>차선 이탈 방지, 전방 추돌 제어 장치 등의 순정 탑재 확인</td>
+                        </tr>
+                        <tr>
+                            <td>자녀 동반 탑승 할인</td>
+                            <td>3퍼센트 ~ 최대 15퍼센트</td>
+                            <td>태아 또는 만 6세 이하의 자녀가 있는 가구 대상 주민등록 증빙</td>
+                        </tr>
+                        <tr>
+                            <td>커넥티드 카 데이터 수집</td>
+                            <td>3퍼센트 ~ 최대 7퍼센트</td>
+                            <td>차량 자체 통신 모듈(블루링크, 유보 등)을 활용한 제어 정보 제공</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="section_direct">4. 다이렉트 비교와 최적화 견적을 찾는 커뮤니티 성지 노하우</h2>
+                <p>
+                    과거에는 전통적인 대면 설계사 컨설팅을 통해 권장 요금제 유형에 순응하여 가입하는 분위기가 짙었으나, 스마트폰과 웹 브라우저 발달이 이루어진 2026년 기준으로는 대다수 가입자가 온라인 및 인터넷 다이렉트 전용 사이트를 통해 자율 설계를 마치는 방식을 압도적으로 선호하고 있습니다. 중간 매개인 수수료가 증발하기 때문에 동일 조건 대비 무조건 평균 15퍼센트에서 20퍼센트 가까이 저렴하다는 최강의 장점이 작용하기 때문입니다.
+                </p>
+                <p>
+                    인터넷 환경이 눈부시게 성장하면서 자동차 및 금융 관련 커뮤니티인 디시인사이드 자동차 갤러리, 보배드림, 에펨코리아(펨코) 등에서는 오프라인 대비 비정상적으로 경제적인 성지 링크나 숨겨진 다이렉트 할인 좌표를 나누는 소통이 실시간으로 생성되고 있습니다. 이들은 단순히 저렴하게 가입하는 요령뿐 아니라, 특정 신용카드로 신규 결제 시 제공되는 캐시백 지원금, 주유 상품권 이벤트 혜택, 혹은 정밀 사은품 현금지원 등의 부가적 리워드 정보를 면밀하게 비교 분석하고 있습니다.
+                </p>
+                <p>
+                    더불어 네이버 페이 포인트를 적립해주거나 토스 플랫폼 등에서 진행하는 다이렉트 견적 조회만 해도 포인트나 상품권을 증정하는 이벤트를 경유하는 것이 하나의 현명한 절차로 여겨집니다. 매년 각 손해보험 브랜드 간의 시장 점유율 경쟁 구도에 맞춰 고객센터 프로모션 내용이 매월 유동적으로 변화하므로, 가입 만기 시점이 임박했을 때 적어도 3개 내지 4개 주요 업체를 동시에 대조하여 최종 가격 순위를 따져보는 끈기가 최저가를 발견하는 절대 공식입니다.
+                </p>
+
+                <h2 id="section_trend">5. 2026년 최신 자동차보험 제도 개정 사항 및 트렌드 변화</h2>
+                <p>
+                    2026년에 들어서면서 금융당국과 도로교통공단이 추진하는 도로 규제 개편과 안전 장비 관련 보상 가이드라인 개정안이 대거 도입되었습니다. 따라서 새로운 요금 및 요금제 설계 시 이러한 대외적 흐름을 숙지하고 대응하는 일이 중요합니다.
+                </p>
+                <p>
+                    첫째로, 국토교통부의 완전 자율주행 초기 상용화 지원 정책과 고속도로 자율협력 주행 환경 구축에 따라, 자율주행 및 ADAS 기술 탑재 등급이 한층 세분화되었습니다. 기존의 포괄적인 차선 이탈 방지 수준을 넘어 레벨 3 수준의 능동형 반자율주행 기능이 검증된 차량들에 한해 추가적인 자차 특약 비율 할인이 연계되는 손해보험 브랜드가 속속 등장하고 있습니다.
+                </p>
+                <p>
+                    둘째로, 인공지능 상담 어플과 지능형 에이전트의 보편화입니다. 제미나이나 챗지피티 같은 LLM(거대 언어 모델) 기반 AI 기술이 다이렉트 고객센터 시스템과 연동되기 시작했습니다. 과거에는 약관 조회를 위해 장시간 대기하거나 딱딱한 텍스트 문서를 해독해야 했지만, 이제는 스마트폰 채팅방 안에서 본인의 주행 패턴을 서술하면 AI 알고리즘이 자동으로 최적의 마일리지 수치와 운전 점수를 산출하여 낭비 없는 포트폴리오를 자동으로 매칭해주는 초개인화 가입 비서가 활약 중입니다.
+                </p>
+
+                <h2 id="section_faq">6. 자주 묻는 질문 (FAQ)</h2>
+
+                <h4>Q1. 신규 운전자인데 부모님 밑으로 가입하여 경력을 인정받는 방법의 장단점은 무엇인가요?</h4>
+                <p>
+                    A1. 가장 큰 장점은 보험 가격의 폭발적인 절감입니다. 운전 경력이 없는 20대 초반이 본인 단독 명의로 신규 견적을 뽑을 경우 통상적으로 200만 원을 초과하지만, 무사고 10년이 넘는 부모님의 연간 보험 계약 범위에 가족 혹은 지정 1인으로 명단을 추가하면 수십만 원의 저렴한 추가 요금만으로 동일한 보장 혜택이 주어집니다. 
+                </p>
+                <p>
+                    다만 단점도 공존합니다. 만약 가입 기간 중 부모님 명의의 해당 차량으로 사고를 내서 인적, 물적 보상 처리가 발생하게 되면 차주이신 부모님의 전체 보험료율 등급까지 등달아 강제 할증이 부여되는 리스크를 지게 됩니다. 따라서 사고 위험 관리 및 사전 주의 의무를 늘 유지하는 태도가 뒷받침되어야 합니다.
+                </p>
+
+                <h4>Q2. 수많은 다이렉트 브랜드 중 가장 저렴한곳 순위는 정해져 있는 것인가요?</h4>
+                <p>
+                    A2. 그렇지 않습니다. 모든 손해보험 업체는 분기별로 축적되는 자신들의 누적 손해율과 주력 타겟 운전자층의 통계 데이터를 다르게 적용합니다. 예를 들어 A 브랜드는 30대 중반 패밀리 세단 가구에 대해 극도로 낮은 손해율을 보이고 있어 해당 연령대의 가격을 가장 경제적으로 책정하지만, 반대로 20대 저연령 수입 스포츠카 소유주에 대해서는 큰 손실을 입어 매우 높은 가산 요율을 부과하기도 합니다. 
+                </p>
+                <p>
+                    즉 개인이 보유한 연령, 차량 등급, 무사고 기록, 사고 전적 등의 고유 프로필 조합에 따라 매년 최저가를 제시해주는 회사가 전면적으로 뒤바뀌므로 귀찮더라도 개별 다이렉트 어플 및 비교 사이트를 골고루 돌려보시는 수고가 따르는 법입니다.
+                </p>
+
+                <h4>Q3. UBI 안전운전 점수가 떨어졌는데 다시 높이는 효과적인 노하우가 있을까요?</h4>
+                <p>
+                    A3. UBI 특약 점수를 다시 회복하는 제일 확실한 방법은 출퇴근 시간대를 피한 교통량이 아주 한적한 주말 이른 아침에 야외 순환도로 등을 시속 60~80km 정속으로 여유롭게 주행하며 누적 킬로미터 거리를 리셋시켜주는 작전입니다. 
+                </p>
+                <p>
+                    주행 기록 중 급제동과 급가속 판정이 점수 하락에 제일 치명적이며, 보행 신호나 신호등 예측 거리를 충분히 길게 확보하고 미리 엑셀에서 발을 떼서 타력 주행하는 완만한 속도 저하를 생활화하시면 100km 내지 200km 주행 내로도 단시간에 우수 성적으로 회복하여 보험 요금 할인을 수월하게 신청할 수 있습니다.
+                </p>
+
+                <div class="external-links">
+                    <h3>공신력과 깊이를 갖춘 추천 외부 정보 링크</h3>
+                    <ul>
+                        <li><a href="https://directvsearchu.reliabledone.com" target="_blank" rel="noopener noreferrer">금융 종합 정보 서비스 reliabledone: 자동차보험 연령별 요율 분석 가이드</a></li>
+                        <li><a href="https://www.fss.or.kr" target="_blank" rel="noopener noreferrer">금융감독원 공식 홈페이지: 금융 정보 및 자동차보험 표준약관 정보</a></li>
+                        <li><a href="https://www.kidi.or.kr" target="_blank" rel="noopener noreferrer">보험개발원 공식 홈페이지: 자동차 모델별 보험 등급 검색 및 통계 지표</a></li>
+                        <li><a href="https://namu.wiki/w/%EC%95%84%EC%A2%8B%EC%95%84" target="_blank" rel="noopener noreferrer">나무위키: 자동차보험 개요 및 이용자 주의점 백과 사전</a></li>
+                    </ul>
+                </div>
+
+                <p style="text-align: right; color: #777; font-size: 0.9em; margin-top: 50px;">최종 정보 가공 및 게시일: 2026년 7월 24일</p>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function estimatePremium() {
+            var ageGroup = document.getElementById("calcAge").value;
+            var exp = document.getElementById("calcExp").value;
+            var carType = document.getElementById("calcCar").value;
+            
+            var baseValue = 1100000;
+            var ageFactor = 1.0;
+            
+            if (ageGroup === "u21") { ageFactor = 2.9; }
+            else if (ageGroup === "o21") { ageFactor = 2.1; }
+            else if (ageGroup === "o24") { ageFactor = 1.6; }
+            else if (ageGroup === "o26") { ageFactor = 1.25; }
+            else if (ageGroup === "o30") { ageFactor = 0.95; }
+            else if (ageGroup === "o35") { ageFactor = 0.8; }
+            else if (ageGroup === "o43") { ageFactor = 0.75; }
+            else if (ageGroup === "o48") { ageFactor = 0.7; }
+
+            var expFactor = 1.0;
+            if (exp === "new") { expFactor = 1.5; }
+            else if (exp === "yr1") { expFactor = 1.15; }
+            else if (exp === "yr3") { expFactor = 0.95; }
+            else if (exp === "yr5") { expFactor = 0.82; }
+
+            var carFactor = 1.0;
+            if (carType === "compact") { carFactor = 0.8; }
+            else if (carType === "sedan") { carFactor = 1.0; }
+            else if (carType === "suv") { carFactor = 1.12; }
+            else if (carType === "luxury") { carFactor = 1.55; }
+
+            var rawEst = baseValue * ageFactor * expFactor * carFactor;
+            var minEst = Math.round((rawEst * 0.92) / 10000) * 10000;
+            var maxEst = Math.round((rawEst * 1.08) / 10000) * 10000;
+
+            document.getElementById("estResult").style.display = "block";
+            document.getElementById("estText").innerHTML = "기본 요율 지수 예상 평균 요금: <br><strong>" + minEst.toLocaleString() + "원 ~ " + maxEst.toLocaleString() + "원</strong>";
+            
+            var riskEvaluation = "통계적 안전 등급";
+            if (ageFactor * expFactor > 2.0) {
+                riskEvaluation = "위험 지수 극히 높음 (초기 가입 저연령대 요율)";
+            } else if (ageFactor * expFactor > 1.3) {
+                riskEvaluation = "주의 요망 (연령 및 경력 과도기 단계)";
+            } else {
+                riskEvaluation = "안정적 위험군 진입 (최저 요율 정체 구간 확보)";
+            }
+            document.getElementById("estRisk").innerHTML = "평가 피드백: <strong>" + riskEvaluation + "</strong>";
+        }
+
+        function calculateDiscounts() {
+            var baseVal = parseFloat(document.getElementById("basePremium").value);
+            if (isNaN(baseVal) || baseVal <= 0) {
+                alert("기본 산정 요금을 정확히 입력해 주세요.");
+                return;
+            }
+
+            var discountRatio = 0;
+
+            if (document.getElementById("rideMileage").checked) {
+                var mileOption = document.getElementById("mileageSelect").value;
+                if (mileOption === "k3") { discountRatio += 35; }
+                else if (mileOption === "k5") { discountRatio += 25; }
+                else if (mileOption === "k10") { discountRatio += 15; }
+                else if (mileOption === "k15") { discountRatio += 5; }
+            }
+
+            if (document.getElementById("rideUbi").checked) {
+                var ubiOption = document.getElementById("ubiSelect").value;
+                if (ubiOption === "s80") { discountRatio += 12; }
+                else if (ubiOption === "s70") { discountRatio += 8; }
+                else if (ubiOption === "s60") { discountRatio += 4; }
+            }
+
+            if (document.getElementById("rideAdas").checked) {
+                discountRatio += 6;
+            }
+
+            if (document.getElementById("rideChild").checked) {
+                discountRatio += 8;
+            }
+
+            if (document.getElementById("rideEdelivery").checked) {
+                discountRatio += 2;
+            }
+
+            if (discountRatio > 60) {
+                discountRatio = 60;
+            }
+
+            var savedAmount = Math.round((baseVal * (discountRatio / 100)) / 100) * 100;
+            var finalPremium = Math.round((baseVal - savedAmount) / 100) * 100;
+
+            document.getElementById("discResult").style.display = "block";
+            document.getElementById("discSavings").innerHTML = "예상 총 할인 비율: <strong>" + discountRatio + "퍼센트</strong> (아낀 비용: <strong>" + savedAmount.toLocaleString() + "원</strong>)";
+            document.getElementById("discFinal").innerHTML = "최종 결제 예상 금액: <strong>" + finalPremium.toLocaleString() + "원</strong>";
+        }
+
+        function submitConsultation(event) {
+            event.preventDefault();
+            var name = document.getElementById("consName").value;
+            var phone = document.getElementById("consPhone").value;
+            var agree = document.getElementById("consAgree").checked;
+
+            if (!name || !phone || !agree) {
+                alert("필수 항목을 모두 기재 및 동의해 주세요.");
+                return;
+            }
+
+            document.getElementById("consultForm").style.display = "none";
+            document.getElementById("consultResult").style.display = "block";
+        }
+    </script>
+  
